@@ -7,7 +7,7 @@ function submitBet() {
     const prediction = document.getElementById('prediction').value;
     const odds = document.getElementById('odds').value;
     const money = document.getElementById('money').value;
-    const payout = document.getElementById('payout').value;
+    const payout = calculatePayout(odds, money);
 
     // Add the bet to active bets
     activeBets.push({ eventName, prediction, odds, money, payout });
@@ -18,15 +18,14 @@ function submitBet() {
     alert('Bet submitted successfully!');
 }
 
-function calculatePayout() {
-    const odds = parseFloat(document.getElementById('odds').value);
-    const money = parseFloat(document.getElementById('money').value);
+function calculatePayout(odds, money) {
+    const oddsValue = parseFloat(odds);
+    const moneyValue = parseFloat(money);
 
-    if (!isNaN(odds) && !isNaN(money)) {
-        const payout = (odds * money).toFixed(2);
-        document.getElementById('payout').value = `$${payout}`;
+    if (!isNaN(oddsValue) && !isNaN(moneyValue)) {
+        return (oddsValue * moneyValue).toFixed(2);
     } else {
-        document.getElementById('payout').value = '';
+        return '';
     }
 }
 
@@ -39,7 +38,7 @@ function updateActiveBetsList() {
     // Add the new bet to the list
     for (const bet of activeBets) {
         const listItem = document.createElement('li');
-        listItem.textContent = `${bet.eventName}: ${bet.prediction} (Odds: ${bet.odds}, Money: $${bet.money}, Payout: ${bet.payout})`;
+        listItem.textContent = `${bet.eventName}: ${bet.prediction} (Odds: ${bet.odds}, Money: $${bet.money}, Payout: $${bet.payout})`;
         listItem.style.backgroundColor = '#444';
         listItem.style.border = '1px solid #333';
         listItem.style.padding = '10px';
