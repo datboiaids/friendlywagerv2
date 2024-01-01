@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,50 +6,50 @@
     <title>Friend Betting Platform</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body style="background-color: #000;">
     <div class="container">
-        <h1>Welcome to the Friend Betting Platform</h1>
-        <p>Submit your bets below:</p>
+        <h1 style="color: #fff;">Friendly Wager</h1>
+        <p style="color: #fff;">Submit your bets below:</p>
 
         <form id="betForm">
             <div class="form-group">
-                <label for="eventName">Event Name:</label>
+                <label for="eventName" style="color: #fff;">Bet:</label>
                 <input type="text" id="eventName" required>
             </div>
 
             <div class="form-group">
-                <label for="prediction">Your Prediction:</label>
+                <label for="prediction" style="color: #fff;">Prediction:</label>
                 <input type="text" id="prediction" required>
             </div>
 
             <div class="form-group">
-                <label for="odds">Odds:</label>
+                <label for="odds" style="color: #fff;">Odds:</label>
                 <input type="number" id="odds" oninput="calculatePayout()" required>
             </div>
 
             <div class="form-group">
-                <label for="money">Money:</label>
+                <label for="money" style="color: #fff;">Money:</label>
                 <div class="input-group">
-                    <span class="input-group-addon">$</span>
+                    <span class="input-group-addon" style="background-color: #0066cc; color: #fff;">$</span>
                     <input type="number" id="money" oninput="calculatePayout()" required>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="payout">Potential Payout:</label>
-                <input type="text" id="payout" readonly>
+                <label for="payout" style="color: #fff;">Potential Payout:</label>
+                <input type="text" id="payout" readonly style="color: #333;">
             </div>
 
-            <button type="button" onclick="submitBet()">Submit Bet</button>
+            <button type="button" onclick="submitBet()" style="background-color: #004080; color: #fff; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: background-color 0.3s ease-in-out;">Submit Bet</button>
         </form>
 
         <!-- New section for active bets -->
-        <div id="activeBets">
+        <div id="activeBets" style="color: #fff;">
             <h2>Active Bets</h2>
             <ul id="activeBetsList"></ul>
         </div>
 
-        <div id="results">
+        <div id="results" style="color: #fff;">
             <h2>Recent Results</h2>
             <ul id="resultsList"></ul>
         </div>
