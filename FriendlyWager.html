@@ -1,1 +1,62 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friend Betting Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Friend Betting Platform</h1>
+        <p>Submit your bets below:</p>
+
+        <form id="betForm">
+            <div class="form-group">
+                <label for="eventName">Event Name:</label>
+                <input type="text" id="eventName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="prediction">Your Prediction:</label>
+                <input type="text" id="prediction" required>
+            </div>
+
+            <div class="form-group">
+                <label for="odds">Odds:</label>
+                <input type="number" id="odds" oninput="calculatePayout()" required>
+            </div>
+
+            <div class="form-group">
+                <label for="money">Money:</label>
+                <div class="input-group">
+                    <span class="input-group-addon">$</span>
+                    <input type="number" id="money" oninput="calculatePayout()" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="payout">Potential Payout:</label>
+                <input type="text" id="payout" readonly>
+            </div>
+
+            <button type="button" onclick="submitBet()">Submit Bet</button>
+        </form>
+
+        <!-- New section for active bets -->
+        <div id="activeBets">
+            <h2>Active Bets</h2>
+            <ul id="activeBetsList"></ul>
+        </div>
+
+        <div id="results">
+            <h2>Recent Results</h2>
+            <ul id="resultsList"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
 
