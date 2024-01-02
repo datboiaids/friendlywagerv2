@@ -1,115 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('submitBetButton').addEventListener('click', submitBet);
-    document.getElementById('betType').addEventListener('change', toggleBetOptions);
-});
-
-function submitBet() {
-    const betItem = createBetItem();
-    document.getElementById('activeBetsList').appendChild(betItem);
-    clearForm();
-}
-
-function createBetItem() {
-    const betName = document.getElementById('betName').value;
-    const betType = document.getElementById('betType').value;
-    const overUnderChoice = betType === 'overUnder' ? document.getElementById('overUnderChoice').value : 'N/A';
-    const odds = parseFloat(document.getElementById('odds').value);
-    const money = parseFloat(document.getElementById('money').value);
-    const payout = calculatePayout(odds, money);
-
-    const betItem = document.createElement('li');
-    betItem.textContent = `${betName} (${betType.toUpperCase()}${overUnderChoice !== 'N/A' ? ', ' + overUnderChoice : ''}) | Odds: ${odds}, Bet: $${money}, Potential Payout: $${payout}`;
-    
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = '×';
-    deleteButton.className = 'delete-button';
-    deleteButton.addEventListener('click', () => betItem.remove());
-    betItem.appendChild(deleteButton);
-
-    return betItem;
-}
-
-function calculatePayout(odds, money) {
-    return odds < 0 ? ((money / Math.abs(odds)) * 100).toFixed(2) : ((odds / 100) * money).toFixed(2);
-}
-
-function clearForm() {
-    document.getElementById('betName').value = '';
-    document.getElementById('betType').value = 'moneyline';
-    document.getElementById('overUnderChoice').style.display = 'none';
-    document.getElementById('odds').value = '';
-    document.getElementById('money').value = '';
-}
-
-function toggleBetOptions() {
-    const betType = document.getElementById('betType').value;
-    const overUnderSelect = document.getElementById('overUnderChoice');
-    overUnderSelect.style.display = betType === 'overUnder' ? 'block' : 'none';
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('submitBetButton').addEventListener('click', submitBet);
-    document.getElementById('betType').addEventListener('change', toggleBetOptions);
-});
-
-function submitBet() {
-    const betData = {
-        betName: document.getElementById('betName').value,
-        betType: document.getElementById('betType').value,
-        overUnderChoice: document.getElementById('overUnderChoice').value,
-        odds: parseFloat(document.getElementById('odds').value),
-        money: parseFloat(document.getElementById('money').value),
-    };
-
-    fetch('/submit-bet', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(betData),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        addBetToList(data);
-        clearForm();
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-}
-
-function addBetToList(betData) {
-    // existing logic from createBetItem, modified to use betData
-    // ...
-}
-
-// ... keep the rest of the functions (createBetItem, calculatePayout, clearForm, toggleBetOptions) as they are
-
-document.addEventListener('DOMContentLoaded', function() {
     const createGroupForm = document.getElementById('createGroupForm');
     const joinGroupForm = document.getElementById('joinGroupForm');
 
     createGroupForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        submitGroupForm('/create-group', {
-            creatorName: document.getElementById('creatorName').value,
-            groupName: document.getElementById('newGroupName').value,
-            groupPassword: document.getElementById('newGroupPassword').value
-        });
+        submitForm('/create-group', getFormData(createGroupForm), navigateToBetPage);
     });
 
     joinGroupForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        submitGroupForm('/join-group', {
-            joinerName: document.getElementById('joinerName').value,
-            groupName: document.getElementById('groupName').value,
-            groupPassword: document.getElementById('groupPassword').value
-        });
+        submitForm('/join-group', getFormData(joinGroupForm), navigateToBetPage);
     });
 });
 
-function submitGroupForm(url, data) {
+function getFormData(form) {
+    return Array.from(form.elements).reduce((data, element) => {
+        if (element.name) data[element.name] = element.value;
+        return data;
+    }, {});
+}
+
+function submitForm(url, data, callback) {
     fetch(url, {
         method: 'POST',
         headers: {
@@ -120,52 +31,33 @@ function submitGroupForm(url, data) {
     .then(response => response.json())
     .then(data => {
         console.log('Success:', data);
-        // Handle success (e.g., update UI or redirect)
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        // Handle errors
-    });
-}
-
-function navigateToBetPage() {
-    window.location.href = '/path-to-bet-page'; // Replace with the actual path to your bet input page
-}
-
-function handleCreateGroupSubmit(event) {
-    event.preventDefault();
-    const groupData = {
-        creatorName: document.getElementById('creatorName').value,
-        groupName: document.getElementById('newGroupName').value,
-        groupPassword: document.getElementById('newGroupPassword').value
-    };
-    postToServer('/create-group', groupData, navigateToBetPage);
-}
-
-function handleJoinGroupSubmit(event) {
-    event.preventDefault();
-    const memberData = {
-        joinerName: document.getElementById('joinerName').value,
-        groupName: document.getElementById('groupName').value,
-        groupPassword: document.getElementById('groupPassword').value
-    };
-    postToServer('/join-group', memberData, navigateToBetPage);
-}
-
-function postToServer(url, data, callback) {
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        if (callback) callback(); // Navigate to bet page on success
+        if (data.success && callback) callback();
     })
     .catch(error => console.error('Error:', error));
 }
+
+function navigateToBetPage() {
+    window.location.href = '/path-to-bet-page'; // Replace with the actual path
+}
+// Additional functionality or event listeners can be added here.
+
+// For instance, if you have a bet submission form:
+const betForm = document.getElementById('betForm');
+if (betForm) {
+    betForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        submitForm('/submit-bet', getFormData(betForm));
+    });
+}
+
+// You might have other functions for different interactions on your page.
+// For example, a function to update user interface based on certain actions:
+function updateUI() {
+    // Code to update UI elements
+    // This could be showing messages, updating lists, etc.
+}
+
+// Similarly, any other specific functionality required by your site can be scripted here.
+// Remember to structure your code in a way that is maintainable and easy to understand.
 
 
