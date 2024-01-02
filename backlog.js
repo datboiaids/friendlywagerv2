@@ -85,3 +85,46 @@ function addBetToList(betData) {
 }
 
 // ... keep the rest of the functions (createBetItem, calculatePayout, clearForm, toggleBetOptions) as they are
+
+document.addEventListener('DOMContentLoaded', function() {
+    const createGroupForm = document.getElementById('createGroupForm');
+    const joinGroupForm = document.getElementById('joinGroupForm');
+
+    createGroupForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        submitGroupForm('/create-group', {
+            creatorName: document.getElementById('creatorName').value,
+            groupName: document.getElementById('newGroupName').value,
+            groupPassword: document.getElementById('newGroupPassword').value
+        });
+    });
+
+    joinGroupForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        submitGroupForm('/join-group', {
+            joinerName: document.getElementById('joinerName').value,
+            groupName: document.getElementById('groupName').value,
+            groupPassword: document.getElementById('groupPassword').value
+        });
+    });
+});
+
+function submitGroupForm(url, data) {
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        // Handle success (e.g., update UI or redirect)
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        // Handle errors
+    });
+}
+

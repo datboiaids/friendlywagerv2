@@ -4,31 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Friendly Wager</title>
-    <!-- Link to your CSS file -->
     <link rel="stylesheet" href="path/to/your/css">
 </head>
 <body>
 
     <header>
-        <!-- Your header content -->
+        <div class="dropdown">
+            <button class="dropbtn">Groups</button>
+            <div class="dropdown-content">
+                <form id="createGroupForm">
+                    <input type="text" id="creatorName" placeholder="Your Name" required>
+                    <input type="text" id="newGroupName" placeholder="Group Name" required>
+                    <input type="password" id="newGroupPassword" placeholder="Create Password" required>
+                    <button type="submit">Create Group</button>
+                </form>
+                <form id="joinGroupForm">
+                    <input type="text" id="joinerName" placeholder="Your Name" required>
+                    <input type="text" id="groupName" placeholder="Group Name" required>
+                    <input type="password" id="groupPassword" placeholder="Enter Password" required>
+                    <button type="submit">Join Group</button>
+                </form>
+            </div>
+        </div>
+        <!-- Other header content -->
     </header>
 
     <main>
-        <form id="betForm">
-            <input type="text" id="betName" name="betName" placeholder="Bet Name" required>
-            <input type="text" id="betType" name="betType" placeholder="Bet Type" required>
-            <input type="text" id="overUnderChoice" name="overUnderChoice" placeholder="Over/Under Choice" required>
-            <input type="number" id="odds" name="odds" placeholder="Odds" required>
-            <input type="number" id="money" name="money" placeholder="Money" required>
-            <input type="number" id="payout" name="payout" placeholder="Payout" required>
-            <button type="submit">Submit Bet</button>
-        </form>
+        <!-- Main content -->
     </main>
 
     <footer>
-        <!-- Your footer content -->
+        <!-- Footer content -->
     </footer>
 
     <script src="path/to/backlog.js"></script>
+    <!-- Additional scripts -->
 </body>
 </html>
