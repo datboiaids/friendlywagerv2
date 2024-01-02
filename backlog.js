@@ -46,3 +46,42 @@ function toggleBetOptions() {
     const overUnderSelect = document.getElementById('overUnderChoice');
     overUnderSelect.style.display = betType === 'overUnder' ? 'block' : 'none';
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('submitBetButton').addEventListener('click', submitBet);
+    document.getElementById('betType').addEventListener('change', toggleBetOptions);
+});
+
+function submitBet() {
+    const betData = {
+        betName: document.getElementById('betName').value,
+        betType: document.getElementById('betType').value,
+        overUnderChoice: document.getElementById('overUnderChoice').value,
+        odds: parseFloat(document.getElementById('odds').value),
+        money: parseFloat(document.getElementById('money').value),
+    };
+
+    fetch('/submit-bet', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(betData),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        addBetToList(data);
+        clearForm();
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+function addBetToList(betData) {
+    // existing logic from createBetItem, modified to use betData
+    // ...
+}
+
+// ... keep the rest of the functions (createBetItem, calculatePayout, clearForm, toggleBetOptions) as they are
