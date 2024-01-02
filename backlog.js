@@ -1,37 +1,34 @@
 document.getElementById('submitBetButton').addEventListener('click', function() {
-    const eventName = document.getElementById('eventName').value;
-    const prediction = document.getElementById('prediction').value;
+    const betName = document.getElementById('betName').value;
+    const betType = document.getElementById('betType').value;
+    const spread = betType === 'spread' ? document.getElementById('spread').value : 'N/A';
     const odds = parseFloat(document.getElementById('odds').value);
     const money = parseFloat(document.getElementById('money').value);
     const payout = calculatePayout(odds, money);
 
     const betItem = document.createElement('li');
-    betItem.innerHTML = `${eventName}: ${prediction} | Odds: ${odds}, Bet: $${money}, Potential Payout: $${payout}
-                         <button onclick="betOver('${eventName}')">Over</button>
-                         <button onclick="betUnder('${eventName}')">Under</button>`;
+    betItem.innerHTML = `${betName} (${betType.toUpperCase()}${spread !== 'N/A' ? ', Spread: ' + spread : ''}) | Odds: ${odds}, Bet: $${money}, Potential Payout: $${payout}
+                         <button onclick="betOver('${betName}')">Over</button>
+                         <button onclick="betUnder('${betName}')">Under</button>`;
     document.getElementById('activeBetsList').appendChild(betItem);
     clearForm();
 });
 
 function calculatePayout(odds, money) {
-    if (odds < 0) {
-        return (money / Math.abs(odds)) * 100;
-    } else {
-        return (odds / 100) * money;
-    }
+    let payout = odds < 0 ? (money / Math.abs(odds)) * 100 : (odds / 100) * money;
+    return payout.toFixed(2);
 }
 
-function betOver(eventName) {
-    console.log("Over bet placed on: " + eventName);
+function betOver(betName) {
+    console.log("Over bet placed on: " + betName);
+    // Additional logic for Over bet
 }
 
-function betUnder(eventName) {
-    console.log("Under bet placed on: " + eventName);
+function betUnder(betName) {
+    console.log("Under bet placed on: " + betName);
+    // Additional logic for Under bet
 }
 
-function clearForm() {
-    document.getElementById('eventName').value = '';
-    document.getElementById('prediction').value = '';
-    document.getElementById('odds').value = '';
-    document.getElementById('money').value = '';
-}
+function toggleSpreadInput() {
+    const betType = document.getElementById('betType').value;
+    const spreadInput = document.getElementById('spread');

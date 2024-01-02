@@ -14,8 +14,12 @@
         <section id="betFormSection">
             <h2>Place Your Bet</h2>
             <form id="betForm">
-                <input type="text" id="eventName" placeholder="Event Name" required>
-                <input type="text" id="prediction" placeholder="Prediction" required>
+                <input type="text" id="betName" placeholder="Bet" required>
+                <select id="betType" onchange="toggleSpreadInput()">
+                    <option value="moneyline">Moneyline</option>
+                    <option value="spread">Spread</option>
+                </select>
+                <input type="number" id="spread" placeholder="Spread" style="display: none;">
                 <input type="number" id="odds" placeholder="Odds" required>
                 <input type="number" id="money" placeholder="Money" required>
                 <button type="button" id="submitBetButton">Submit Bet</button>

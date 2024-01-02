@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #eaeaea;
     color: #333;
     margin: 0;
     padding: 0;
@@ -19,7 +19,7 @@ main {
     flex-direction: column;
     gap: 10px;
 }
-#betForm input, #betForm button {
+#betForm input, #betForm select, #betForm button {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -37,7 +37,7 @@ main {
     padding: 0;
 }
 #activeBetsSection li {
-    background-color: #eaeaea;
+    background-color: #f4f4f4;
     border: 1px solid #ddd;
     margin-top: 10px;
     padding: 10px;
