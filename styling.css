@@ -17,42 +17,44 @@ header {
 
 header h1 {
     font-size: 2.5em;
-    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px #000;
 }
 
 main {
     padding: 20px;
-    display: none; /* Initially hidden, shown via JavaScript */
 }
 
-button {
-    padding: 10px 15px;
+#betFormSection, #activeBetsSection {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#betForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#betForm input, #betForm select, #betForm button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#betForm button {
     background-color: #0056b3;
     color: white;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
-    margin: 10px 5px;
 }
 
-button:hover {
+#betForm button:hover {
     background-color: #003d82;
-}
-
-.popup {
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 15px;
-    border-radius: 5px;
-    margin-top: 20px;
-}
-
-#betForm input, #betForm select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
 }
 
 #activeBetsList li {
@@ -60,9 +62,9 @@ button:hover {
     border: 1px solid #ddd;
     padding: 10px;
     border-radius: 4px;
+    position: relative;
     list-style-type: none;
     margin-bottom: 10px;
-    position: relative;
 }
 
 .delete-button {
@@ -70,9 +72,10 @@ button:hover {
     top: 10px;
     right: 10px;
     background-color: #999;
-    color: white;
     border: none;
+    color: white;
     cursor: pointer;
+    font-size: 16px;
 }
 
 .delete-button:hover {
@@ -84,7 +87,4 @@ footer {
     padding: 10px;
     background-color: #333;
     color: white;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
 }

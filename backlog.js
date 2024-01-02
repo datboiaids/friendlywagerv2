@@ -1,45 +1,48 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Event listeners for home page
-    document.getElementById('joinGroupButton').addEventListener('click', () => togglePopup('joinGroupPopup'));
-    document.getElementById('createGroupButton').addEventListener('click', () => togglePopup('createGroupPopup'));
-    document.getElementById('continueGuestButton').addEventListener('click', () => showBetPage());
-
-    // Event listeners for bet input page
     document.getElementById('submitBetButton').addEventListener('click', submitBet);
+    document.getElementById('betType').addEventListener('change', toggleBetOptions);
 });
 
-function togglePopup(popupId) {
-    const popup = document.getElementById(popupId);
-    popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-}
-
-function showBetPage() {
-    document.getElementById('homePage').style.display = 'none';
-    document.getElementById('betInputPage').style.display = 'block';
-}
-
 function submitBet() {
-    const betName = document.getElementById('betName').value;
-    const betType = document.getElementById('betType').value;
-    const odds = parseFloat(document.getElementById('odds').value);
-    const money = parseFloat(document.getElementById('money').value);
-    const payout = calculatePayout(odds, money);
-
-    const betItem = createBetItem(betName, betType, odds, money, payout);
+    const betItem = createBetItem();
     document.getElementById('activeBetsList').appendChild(betItem);
     clearForm();
 }
 
-function calculatePayout(odds, money) {
-    // Payout calculation logic
+function createBetItem() {
+    const betName = document.getElementById('betName').value;
+    const betType = document.getElementById('betType').value;
+    const overUnderChoice = betType === 'overUnder' ? document.getElementById('overUnderChoice').value : 'N/A';
+    const odds = parseFloat(document.getElementById('odds').value);
+    const money = parseFloat(document.getElementById('money').value);
+    const payout = calculatePayout(odds, money);
+
+    const betItem = document.createElement('li');
+    betItem.textContent = `${betName} (${betType.toUpperCase()}${overUnderChoice !== 'N/A' ? ', ' + overUnderChoice : ''}) | Odds: ${odds}, Bet: $${money}, Potential Payout: $${payout}`;
+    
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = '×';
+    deleteButton.className = 'delete-button';
+    deleteButton.addEventListener('click', () => betItem.remove());
+    betItem.appendChild(deleteButton);
+
+    return betItem;
 }
 
-function createBetItem(betName, betType, odds, money, payout) {
-    // Create and return bet item element
+function calculatePayout(odds, money) {
+    return odds < 0 ? ((money / Math.abs(odds)) * 100).toFixed(2) : ((odds / 100) * money).toFixed(2);
 }
 
 function clearForm() {
-    // Clear the bet form fields
+    document.getElementById('betName').value = '';
+    document.getElementById('betType').value = 'moneyline';
+    document.getElementById('overUnderChoice').style.display = 'none';
+    document.getElementById('odds').value = '';
+    document.getElementById('money').value = '';
 }
 
-// Additional functions for group joining/creating if needed
+function toggleBetOptions() {
+    const betType = document.getElementById('betType').value;
+    const overUnderSelect = document.getElementById('overUnderChoice');
+    overUnderSelect.style.display = betType === 'overUnder' ? 'block' : 'none';
+}

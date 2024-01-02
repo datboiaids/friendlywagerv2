@@ -1,30 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Head elements (common for both pages) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friendly Wager</title>
+    <link rel="stylesheet" href="styling.css">
 </head>
 <body>
     <header>
-        <!-- Header content -->
+        <h1>Friendly Wager</h1>
     </header>
-    
-    <!-- Home Page Section -->
-    <main id="homePage" style="display:block;">
-        <button id="joinGroupButton">Join Group</button>
-        <button id="createGroupButton">Create Group</button>
-        <button id="continueGuestButton">Continue as Guest</button>
-        <!-- Popups for Joining and Creating Group -->
+    <main>
+        <section id="betFormSection">
+            <h2>Place Your Bet</h2>
+            <form id="betForm">
+                <input type="text" id="betName" placeholder="Bet" required>
+                <select id="betType" onchange="toggleBetOptions()">
+                    <option value="moneyline">Moneyline</option>
+                    <option value="overUnder">Over/Under</option>
+                </select>
+                <select id="overUnderChoice" style="display: none;">
+                    <option value="over">Over</option>
+                    <option value="under">Under</option>
+                </select>
+                <input type="number" id="odds" placeholder="Odds" required>
+                <input type="number" id="money" placeholder="Money" required>
+                <button type="button" id="submitBetButton">Submit Bet</button>
+            </form>
+        </section>
+        <section id="activeBetsSection">
+            <h2>Active Bets</h2>
+            <ul id="activeBetsList"></ul>
+        </section>
     </main>
-
-    <!-- Bet Input Page Section -->
-    <main id="betInputPage" style="display:none;">
-        <!-- Bet input form and active bets list -->
-    </main>
-
     <footer>
-        <!-- Footer content -->
+        <p>&copy; 2024 Friendly Wager</p>
     </footer>
-
-    <script src="script.js"></script>
+    <script src="backlog.js"></script>
 </body>
 </html>
