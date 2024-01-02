@@ -128,3 +128,44 @@ function submitGroupForm(url, data) {
     });
 }
 
+function navigateToBetPage() {
+    window.location.href = '/path-to-bet-page'; // Replace with the actual path to your bet input page
+}
+
+function handleCreateGroupSubmit(event) {
+    event.preventDefault();
+    const groupData = {
+        creatorName: document.getElementById('creatorName').value,
+        groupName: document.getElementById('newGroupName').value,
+        groupPassword: document.getElementById('newGroupPassword').value
+    };
+    postToServer('/create-group', groupData, navigateToBetPage);
+}
+
+function handleJoinGroupSubmit(event) {
+    event.preventDefault();
+    const memberData = {
+        joinerName: document.getElementById('joinerName').value,
+        groupName: document.getElementById('groupName').value,
+        groupPassword: document.getElementById('groupPassword').value
+    };
+    postToServer('/join-group', memberData, navigateToBetPage);
+}
+
+function postToServer(url, data, callback) {
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        if (callback) callback(); // Navigate to bet page on success
+    })
+    .catch(error => console.error('Error:', error));
+}
+
+
