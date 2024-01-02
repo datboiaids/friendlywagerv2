@@ -15,11 +15,14 @@
             <h2>Place Your Bet</h2>
             <form id="betForm">
                 <input type="text" id="betName" placeholder="Bet" required>
-                <select id="betType" onchange="toggleSpreadInput()">
+                <select id="betType" onchange="toggleBetOptions()">
                     <option value="moneyline">Moneyline</option>
-                    <option value="spread">Spread</option>
+                    <option value="overUnder">Over/Under</option>
                 </select>
-                <input type="number" id="spread" placeholder="Spread" style="display: none;">
+                <select id="overUnderChoice" style="display: none;">
+                    <option value="over">Over</option>
+                    <option value="under">Under</option>
+                </select>
                 <input type="number" id="odds" placeholder="Odds" required>
                 <input type="number" id="money" placeholder="Money" required>
                 <button type="button" id="submitBetButton">Submit Bet</button>

@@ -1,24 +1,25 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('submitBetButton').addEventListener('click', submitBet);
+    document.getElementById('betType').addEventListener('change', toggleBetOptions);
 });
 
 function submitBet() {
-    const betName = document.getElementById('betName').value;
-    const betType = document.getElementById('betType').value;
-    const spread = betType === 'spread' ? document.getElementById('spread').value : 'N/A';
-    const odds = parseFloat(document.getElementById('odds').value);
-    const money = parseFloat(document.getElementById('money').value);
-    const payout = calculatePayout(odds, money);
-
-    const betItem = createBetItem(betName, betType, spread, odds, money, payout);
+    const betItem = createBetItem();
     document.getElementById('activeBetsList').appendChild(betItem);
     clearForm();
 }
 
-function createBetItem(betName, betType, spread, odds, money, payout) {
-    const betItem = document.createElement('li');
-    betItem.textContent = `${betName} (${betType.toUpperCase()}${spread !== 'N/A' ? ', Spread: ' + spread : ''}) | Odds: ${odds}, Bet: $${money}, Potential Payout: $${payout}`;
+function createBetItem() {
+    const betName = document.getElementById('betName').value;
+    const betType = document.getElementById('betType').value;
+    const overUnderChoice = betType === 'overUnder' ? document.getElementById('overUnderChoice').value : 'N/A';
+    const odds = parseFloat(document.getElementById('odds').value);
+    const money = parseFloat(document.getElementById('money').value);
+    const payout = calculatePayout(odds, money);
 
+    const betItem = document.createElement('li');
+    betItem.textContent = `${betName} (${betType.toUpperCase()}${overUnderChoice !== 'N/A' ? ', ' + overUnderChoice : ''}) | Odds: ${odds}, Bet: $${money}, Potential Payout: $${payout}`;
+    
     const deleteButton = document.createElement('button');
     deleteButton.textContent = '×';
     deleteButton.className = 'delete-button';
@@ -35,13 +36,13 @@ function calculatePayout(odds, money) {
 function clearForm() {
     document.getElementById('betName').value = '';
     document.getElementById('betType').value = 'moneyline';
-    document.getElementById('spread').value = '';
-    document.getElementById('spread').style.display = 'none';
+    document.getElementById('overUnderChoice').style.display = 'none';
     document.getElementById('odds').value = '';
     document.getElementById('money').value = '';
 }
 
-function toggleSpreadInput() {
+function toggleBetOptions() {
     const betType = document.getElementById('betType').value;
-    document.getElementById('spread').style.display = betType === 'spread' ? 'block' : 'none';
+    const overUnderSelect = document.getElementById('overUnderChoice');
+    overUnderSelect.style.display = betType === 'overUnder' ? 'block' : 'none';
 }
