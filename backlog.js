@@ -1,4 +1,8 @@
-document.getElementById('submitBetButton').addEventListener('click', function() {
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('submitBetButton').addEventListener('click', submitBet);
+});
+
+function submitBet() {
     const betName = document.getElementById('betName').value;
     const betType = document.getElementById('betType').value;
     const spread = betType === 'spread' ? document.getElementById('spread').value : 'N/A';
@@ -6,33 +10,26 @@ document.getElementById('submitBetButton').addEventListener('click', function() 
     const money = parseFloat(document.getElementById('money').value);
     const payout = calculatePayout(odds, money);
 
-    const betItem = document.createElement('li');
-    betItem.innerHTML = `${betName} (${betType.toUpperCase()}${spread !== 'N/A' ? ', Spread: ' + spread : ''}) | Odds: ${odds}, Bet: $${money}, Potential Payout: $${payout}
-                         <button onclick="betOver('${betName}')">Over</button>
-                         <button onclick="betUnder('${betName}')">Under</button>`;
+    const betItem = createBetItem(betName, betType, spread, odds, money, payout);
     document.getElementById('activeBetsList').appendChild(betItem);
     clearForm();
-});
+}
+
+function createBetItem(betName, betType, spread, odds, money, payout) {
+    const betItem = document.createElement('li');
+    betItem.textContent = `${betName} (${betType.toUpperCase()}${spread !== 'N/A' ? ', Spread: ' + spread : ''}) | Odds: ${odds}, Bet: $${money}, Potential Payout: $${payout}`;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = '×';
+    deleteButton.className = 'delete-button';
+    deleteButton.addEventListener('click', () => betItem.remove());
+    betItem.appendChild(deleteButton);
+
+    return betItem;
+}
 
 function calculatePayout(odds, money) {
-    let payout = odds < 0 ? (money / Math.abs(odds)) * 100 : (odds / 100) * money;
-    return payout.toFixed(2);
-}
-
-function betOver(betName) {
-    console.log("Over bet placed on: " + betName);
-    // Additional logic for Over bet
-}
-
-function betUnder(betName) {
-    console.log("Under bet placed on: " + betName);
-    // Additional logic for Under bet
-}
-
-function toggleSpreadInput() {
-    const betType = document.getElementById('betType').value;
-    const spreadInput = document.getElementById('spread');
-    spreadInput.style.display = betType === 'spread' ? 'block' : 'none';
+    return odds < 0 ? ((money / Math.abs(odds)) * 100).toFixed(2) : ((odds / 100) * money).toFixed(2);
 }
 
 function clearForm() {
@@ -44,4 +41,7 @@ function clearForm() {
     document.getElementById('money').value = '';
 }
 
-// Additional JavaScript logic and functions can be added as needed.
+function toggleSpreadInput() {
+    const betType = document.getElementById('betType').value;
+    document.getElementById('spread').style.display = betType === 'spread' ? 'block' : 'none';
+}
