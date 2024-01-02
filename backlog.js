@@ -32,3 +32,16 @@ function betUnder(betName) {
 function toggleSpreadInput() {
     const betType = document.getElementById('betType').value;
     const spreadInput = document.getElementById('spread');
+    spreadInput.style.display = betType === 'spread' ? 'block' : 'none';
+}
+
+function clearForm() {
+    document.getElementById('betName').value = '';
+    document.getElementById('betType').value = 'moneyline';
+    document.getElementById('spread').value = '';
+    document.getElementById('spread').style.display = 'none';
+    document.getElementById('odds').value = '';
+    document.getElementById('money').value = '';
+}
+
+// Additional JavaScript logic and functions can be added as needed.
