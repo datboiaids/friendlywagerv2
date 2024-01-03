@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Friendly Wager</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <title>Place Your Bet</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="optionContainer">
-        <div id="signInOption" class="option">Sign In</div>
-        <div id="createAccountOption" class="option">Create Account</div>
-        <div id="guestOption" class="option">Continue as Guest</div>
-    </div>
-
-    <div id="signInForm" class="formContainer">
-        <!-- SignIn Form -->
-    </div>
-
-    <div id="signUpForm" class="formContainer">
-        <!-- SignUp Form -->
-    </div>
-
-    <script src="script.js"></script> <!-- Link to your JavaScript file -->
+    <h1>Place Your Bet</h1>
+    <form id="betForm">
+        <input type="text" id="betName" placeholder="Bet Name">
+        <input type="number" id="betAmount" placeholder="Bet Amount">
+        <select id="typeOfBet">
+            <option value="moneyline">Moneyline</option>
+            <option value="overUnder">Over / Under</option>
+        </select>
+        <input type="number" id="betOdds" placeholder="Bet Odds">
+        <input type="text" id="betPayout" placeholder="Bet Payout" readonly>
+        <input type="text" id="userSubmissionName" placeholder="Your Name">
+        <button type="submit">Submit Bet</button>
+    </form>
+    <script src="betScript.js"></script>
 </body>
 </html>
