@@ -1,128 +1,41 @@
-/* Base styles for overall look and feel */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 0;
 }
 
-header, footer {
-    background-color: #333;
-    color: white;
+#optionContainer {
     text-align: center;
-    padding: 1em 0;
-}
-
-main {
+    background-color: white;
     padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border-radius: 8px;
 }
 
-/* Styles for dropdown menu */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropbtn {
+.option {
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
+    margin: 10px 0;
     font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    left: 0;
-    background-color: white;
-    min-width: 200px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.dropdown-content form {
-    display: flex;
-    flex-direction: column;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Styles for form elements */
-input[type=text], input[type=password], button {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
     transition: background-color 0.3s;
 }
 
-button:hover {
+.option:hover {
     background-color: #45a049;
 }
 
-/* Responsive design adjustments */
-@media screen and (max-width: 600px) {
-    .dropbtn, input[type=text], input[type=password], button {
-        width: 100%;
-    }
-}
-/* Styling for Tables (if you have any) */
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-/* Styling for Messages or Alerts */
-.alert {
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-    margin-bottom: 15px;
-}
-
-.alert.success {
-    background-color: #4CAF50;
-}
-
-.alert.info {
-    background-color: #2196F3;
-}
-
-.alert.warning {
-    background-color: #ff9800;
-}
-
-/* Utility Classes */
-.hidden {
+.formContainer {
     display: none;
+    margin-top: 20px;
 }
 
-/* Additional styling based on your specific requirements */
-/* For example, styles for buttons, links, navigation bars, etc. */
+/* Add more styling as needed */
 

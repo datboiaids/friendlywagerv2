@@ -4,52 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Friendly Wager</title>
-    <link rel="stylesheet" href="path/to/your/css">
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
 </head>
 <body>
+    <div id="optionContainer">
+        <div id="signInOption" class="option">Sign In</div>
+        <div id="createAccountOption" class="option">Create Account</div>
+        <div id="guestOption" class="option">Continue as Guest</div>
+    </div>
 
-    <header>
-        <div class="dropdown">
-            <button class="dropbtn">Groups</button>
-            <div class="dropdown-content">
-                <!-- Create Group Form -->
-                <form id="createGroupForm">
-                    <input type="text" id="creatorName" name="creatorName" placeholder="Your Name" required>
-                    <input type="text" id="newGroupName" name="newGroupName" placeholder="Group Name" required>
-                    <input type="password" id="newGroupPassword" name="newGroupPassword" placeholder="Create Password" required>
-                    <button type="submit">Create Group</button>
-                </form>
-                <!-- Join Group Form -->
-                <form id="joinGroupForm">
-                    <input type="text" id="joinerName" name="joinerName" placeholder="Your Name" required>
-                    <input type="text" id="groupName" name="groupName" placeholder="Group Name" required>
-                    <input type="password" id="groupPassword" name="groupPassword" placeholder="Enter Password" required>
-                    <button type="submit">Join Group</button>
-                </form>
-            </div>
-        </div>
-    </header>
+    <div id="signInForm" class="formContainer">
+        <!-- SignIn Form -->
+    </div>
 
-    <main>
-        <!-- Example content for bet submissions -->
-    <section id="betSection">
-        <h2>Place Your Bet</h2>
-        <form id="betForm">
-            <!-- Add form fields for bet submission here -->
-            <input type="text" id="betName" placeholder="Bet Name">
-            <!-- Additional fields... -->
-            <button type="submit">Submit Bet</button>
-        </form>
-    </section>
-    <!-- Additional content sections can go here -->
-    </main>
+    <div id="signUpForm" class="formContainer">
+        <!-- SignUp Form -->
+    </div>
 
-    <footer>
-        <p>&copy; 2024 Friendly Wager. All rights reserved.</p>
-        <p>Contact us at <a href="mailto:info@friendlywager.com">info@friendlywager.com</a></p>
-        <!-- Add more footer links or information as needed -->
-    </footer>
-
-    <script src="path/to/backlog.js"></script>
+    <script src="script.js"></script> <!-- Link to your JavaScript file -->
 </body>
 </html>
