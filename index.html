@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Friendly Wager</title>
-    <!-- Add your CSS file links here -->
+    <link rel="stylesheet" href="styling.css"> <!-- Link to your CSS file -->
 </head>
 <body>
     <header>
@@ -22,7 +22,7 @@
     <main>
         <section id="join-group">
             <h2>Join a Group</h2>
-            <form action="" method="post">
+            <form id="join-group-form" action="" method="post"> <!-- Added ID for JavaScript reference -->
                 <label for="group-code">Enter Group Code:</label>
                 <input type="text" id="group-code" name="group_code" required>
                 <button type="submit">Join</button>
@@ -31,7 +31,7 @@
 
         <section id="create-bet">
             <h2>Create a Bet</h2>
-            <form action="" method="post">
+            <form id="create-bet-form" action="" method="post"> <!-- Added ID for JavaScript reference -->
                 <label for="bet-creator">Your Name:</label>
                 <input type="text" id="bet-creator" name="bet_creator" required>
 
@@ -63,5 +63,7 @@
     <footer>
         <p>&copy; 2024 Friendly Wager. All rights reserved.</p>
     </footer>
+
+    <script src="backlog.js"></script> <!-- Link to your JavaScript file -->
 </body>
 </html>
