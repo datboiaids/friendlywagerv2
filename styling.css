@@ -6,14 +6,15 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif; /* Replace with 'mfizz' or another font if needed */
-    background-color: #065490; /* Obsidian color */
-    color: #FFFFFF; /* White text */
-    text-align: center; /* Center everything */
+    font-family: 'Arial', sans-serif;
+    background-color: navy; /* Navy blue background */
+    color: white; /* White text for better contrast */
+    text-align: center;
 }
 
 nav ul {
     list-style-type: none;
+    padding: 0;
 }
 
 nav ul li {
@@ -22,7 +23,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #ffffff; /* Darker green color */
+    color: #008f68; /* Darker green color */
     text-decoration: none;
 }
 
@@ -31,14 +32,60 @@ header, section, footer {
     padding: 15px;
 }
 
+/* Styling for the Create Bet form */
+#create-bet div {
+    margin: 10px auto;
+    width: 80%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#create-bet label {
+    flex-basis: 40%;
+    text-align: right;
+    margin-right: 10px;
+}
+
+#create-bet input[type="text"], 
+#create-bet input[type="number"], 
+#create-bet select {
+    flex-grow: 1;
+    padding: 5px;
+}
+
+#over-under-input {
+    display: none;
+    width: 100%;
+}
+
+#over-under-input label {
+    flex-basis: auto;
+    text-align: left;
+}
+
+#over-under-input select {
+    flex-grow: 1;
+}
+
 /* Responsive design for smaller screens */
 @media screen and (max-width: 600px) {
     nav ul li {
-        display: block; /* Stack the menu items vertically */
+        display: block;
         margin: 10px 0;
     }
 
-    /* Adjust other elements for smaller screens as needed */
+    #create-bet div {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #create-bet label {
+        text-align: left;
+        margin-bottom: 5px;
+    }
 }
 
-/* Add additional styling as per your design requirements */
+/* Add additional styling as needed */
