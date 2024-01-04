@@ -1,51 +1,44 @@
-/* General Styles */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #1B1C1E; /* Obsidian color */
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+/* Basic Reset */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Option Container Styles */
-#optionsContainer {
-    text-align: center;
+body {
+    font-family: 'Arial', sans-serif; /* Replace with 'mfizz' or another font if needed */
+    background-color: #121212; /* Obsidian color */
+    color: #FFFFFF; /* White text */
+    text-align: center; /* Center everything */
 }
 
-.option {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    margin: 10px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
+nav ul {
+    list-style-type: none;
 }
 
-.option:hover {
-    background-color: #367C39;
-    transform: scale(1.05);
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
 }
 
-/* Form Container Styles */
-.formContainer {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s;
+nav ul li a {
+    color: #008f68; /* Darker green color */
+    text-decoration: none;
 }
 
-/* Additional styles for form elements, buttons, etc., can be added here */
+header, section, footer {
+    margin: 20px;
+    padding: 15px;
+}
 
-/* Responsive Design */
-@media (max-width: 600px) {
-    .option {
-        font-size: 14px;
-        padding: 8px 15px;
+/* Responsive design for smaller screens */
+@media screen and (max-width: 600px) {
+    nav ul li {
+        display: block; /* Stack the menu items vertically */
+        margin: 10px 0;
     }
-    /* Additional responsive styles can be added here */
+
+    /* Adjust other elements for smaller screens as needed */
 }
+
+/* Add additional styling as per your design requirements */
