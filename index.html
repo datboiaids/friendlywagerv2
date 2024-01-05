@@ -65,44 +65,56 @@
         
                 <button type="submit">Create Bet</button>
             </form>
-            
-        </section>        
 
-        <section id="current-bets">
-            <h2>Create a Bet</h2>
-            <form id="create-bet-form" action="" method="post">
-                <label for="bet-name">Name of Bet:</label>
-                <input type="text" id="bet-name" name="bet_name" required>
-        
-                <label for="amount-put-down">Amount Bet:</label>
-                <input type="number" id="amount-put-down" name="amount_put_down" required>
-        
-                <label for="odds">Odds (e.g., +200, -120):</label>
-                <input type="text" id="odds" name="odds" required>
-        
-                <label for="bet-type">Bet Type:</label>
-                <select id="bet-type" name="bet_type" onchange="toggleOverUnderInput()">
-                    <option value="moneyline">Moneyline</option>
-                    <option value="over_under">Over/Under</option>
-                </select>
-        
-                <div id="over-under-input" style="display: none;">
-                    <label for="over-under-selection">Choose Over/Under:</label>
-                    <select id="over-under-selection" name="over_under_selection">
-                        <option value="over">Over</option>
-                        <option value="under">Under</option>
-                    </select>
+            <section id="current-bets">
+                <h2>Current Bets</h2>
+                <div id="bets-list">
+                    <!-- Dynamically inserted bets will appear here -->
                 </div>
-        
-                <label for="bet-creator">Your Name:</label>
-                <input type="text" id="bet-creator" name="bet_creator" required>
-        
-                <label for="payout">Payout:</label>
-                <input type="number" id="payout" name="payout" required>
-        
-                <button type="submit">Create Bet</button>
-            </form>
-        </section>
+            </section>
+
+            <script>
+                function createBet() {
+    var betData = {
+        name: document.getElementById('bet-name').value,
+        amount: document.getElementById('amount-put-down').value,
+        odds: document.getElementById('odds').value,
+        betType: document.getElementById('bet-type').value,
+        overUnderSelection: document.getElementById('bet-type').value === 'over_under' ? document.getElementById('over-under-selection').value : null,
+        creator: document.getElementById('bet-creator').value,
+        payout: document.getElementById('payout').value
+    };
+    console.log("Creating bet: ", betData);
+    addBetToDisplay(betData);
+    // In a real application, you would also send this data to a server.
+}
+
+function addBetToDisplay(betData) {
+    var betsList = document.getElementById('bets-list');
+    
+    var betDiv = document.createElement('div');
+    betDiv.classList.add('bet-item'); // For CSS styling
+    betDiv.innerHTML = `
+        <strong>Bet Name:</strong> ${betData.name}<br>
+        <strong>Amount:</strong> $${betData.amount}<br>
+        <strong>Odds:</strong> ${betData.odds}<br>
+        <strong>Type:</strong> ${betData.betType}<br>
+        ${betData.betType === 'over_under' ? `<strong>Over/Under:</strong> ${betData.overUnderSelection}<br>` : ''}
+        <strong>Creator:</strong> ${betData.creator}<br>
+        <strong>Payout:</strong> $${betData.payout}
+    `;
+    betsList.appendChild(betDiv);
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('create-bet-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        createBet();
+        e.target.reset(); // Optional: Reset the form fields after submission
+    });
+});
+            </script>
+
     </main>
 
     <footer>
@@ -127,5 +139,6 @@
             // Add more JavaScript as needed for other functionalities
         });
     </script>
+    
 </body>
 </html>
