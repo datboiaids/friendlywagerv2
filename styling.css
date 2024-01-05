@@ -89,12 +89,8 @@ header, section, footer {
 }
 
 #current-bets {
-    background-color: #ffffff; /* White background for better readability */
     padding: 20px;
     margin-top: 30px;
-    border: 1px solid #dddddd; /* Light border for subtle definition */
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
 }
 
 #bets-list {
@@ -102,21 +98,14 @@ header, section, footer {
 }
 
 .bet-item {
-    background-color: #f9f9f9; /* Very light gray background for each bet */
     padding: 15px;
     margin-bottom: 10px;
-    border-radius: 5px;
-    border-left: 4px solid #4CAF50; /* Green accent border */
+    border-bottom: 1px solid #dddddd; /* Light border for separation */
     text-align: left;
-}
-
-.bet-item:not(:last-child) {
-    border-bottom: 1px solid #eaeaea; /* Separator between bets */
 }
 
 .bet-item strong {
     color: #333; /* Dark text for emphasis */
-    font-weight: normal; /* Normal font-weight for a cleaner look */
     margin-right: 5px; /* Spacing between label and value */
 }
 
