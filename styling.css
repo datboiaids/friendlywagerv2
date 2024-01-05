@@ -100,12 +100,12 @@ header, section, footer {
 .bet-item {
     padding: 15px;
     margin-bottom: 10px;
-    border-bottom: 1px solid #dddddd; /* Light border for separation */
+    border-bottom: 1px solid #0d0000; /* Light border for separation */
     text-align: left;
 }
 
 .bet-item strong {
-    color: #333; /* Dark text for emphasis */
+    color: #faf4f4; /* Dark text for emphasis */
     margin-right: 5px; /* Spacing between label and value */
 }
 
