@@ -91,9 +91,8 @@ header, section, footer {
 #current-bets {
     margin-top: 30px;
     padding: 15px;
-    background-color: #ffffff; /* Clean white background */
+    background-color: transparent; /* Transparent background */
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 #bets-list {
@@ -103,11 +102,9 @@ header, section, footer {
 }
 
 .bet-item {
-    background-color: #f9f9f9; /* Light gray background for each bet item */
-    margin-bottom: 10px;
     padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #e1e1e1; /* Light border for definition */
+    margin-bottom: 10px;
+    border-bottom: 1px solid #e1e1e1; /* Subtle bottom border for separation */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -115,6 +112,7 @@ header, section, footer {
 
 .bet-item:last-child {
     margin-bottom: 0; /* Removes margin for the last item */
+    border-bottom: none; /* No border for the last item */
 }
 
 .bet-item-details {
@@ -131,11 +129,11 @@ header, section, footer {
 .bet-close {
     font-size: 20px;
     cursor: pointer;
-    color: #cc0000; /* Red color for the close button */
+    color: #999;
 }
 
 .bet-close:hover {
-    color: #ff0000;
+    color: #666;
 }
 
 @media (max-width: 600px) {
