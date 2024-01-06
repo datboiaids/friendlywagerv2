@@ -114,25 +114,57 @@ function removeBet(betId) {
 
 function addBetToDisplay(betData) {
     var betsList = document.getElementById('bets-list').getElementsByTagName('tbody')[0];
-    var row = betsList.insertRow(-1); // Insert a row at the end of the table
+    var row = betsList.insertRow(-1); // Inserts a row at the end
 
-    // Add cells for each piece of bet information
-    row.insertCell(0).textContent = betData.name;
-    row.insertCell(1).textContent = `$${betData.amount}`;
-    row.insertCell(2).textContent = betData.odds;
-    row.insertCell(3).textContent = betData.betType;
-    row.insertCell(4).textContent = betData.overUnderSelection || '-';
-    row.insertCell(5).textContent = betData.creator;
-    row.insertCell(6).textContent = `$${betData.payout}`;
+    // Ensuring each cell is created and filled just like the example bet
+    var cellName = row.insertCell(0);
+    cellName.textContent = betData.name;
 
-    // Add a close button to remove the bet
-    var closeButtonCell = row.insertCell(7);
+    var cellAmount = row.insertCell(1);
+    cellAmount.textContent = `$${betData.amount}`;
+
+    var cellOdds = row.insertCell(2);
+    cellOdds.textContent = betData.odds;
+
+    var cellType = row.insertCell(3);
+    cellType.textContent = betData.betType;
+
+    var cellOverUnder = row.insertCell(4);
+    cellOverUnder.textContent = betData.overUnderSelection || '-';
+
+    var cellCreator = row.insertCell(5);
+    cellCreator.textContent = betData.creator;
+
+    var cellPayout = row.insertCell(6);
+    cellPayout.textContent = `$${betData.payout}`;
+
+    var cellAction = row.insertCell(7);
     var closeButton = document.createElement("span");
-    closeButton.textContent = "×";
-    closeButton.className = "bet-close";
+    closeButton.innerHTML = "&times;";
+    closeButton.classList.add("bet-close");
     closeButton.onclick = function() { row.remove(); };
-    closeButtonCell.appendChild(closeButton);
+    cellAction.appendChild(closeButton);
 }
+
+document.getElementById('create-bet-form').onsubmit = function(e) {
+    e.preventDefault();
+    // Gather data from the form
+    var betData = {
+        name: document.getElementById('bet-name').value,
+        amount: document.getElementById('amount-put-down').value,
+        odds: document.getElementById('odds').value,
+        betType: document.getElementById('bet-type').value,
+        overUnderSelection: document.getElementById('bet-type').value === 'over_under' ? document.getElementById('over-under-selection').value : null,
+        creator: document.getElementById('bet-creator').value,
+        payout: document.getElementById('payout').value
+    };
+
+    // Add the bet to the table
+    addBetToDisplay(betData);
+
+    // Reset the form or perform other necessary actions
+};
+
 
 // Ensure this function is called with the right data when a user submits a bet
 
