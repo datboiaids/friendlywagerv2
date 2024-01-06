@@ -90,6 +90,10 @@ header, section, footer {
 
 #current-bets {
     margin-top: 30px;
+    padding: 15px;
+    background-color: #f8f8f8; /* Light background for the section */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
 }
 
 #bets-list {
@@ -98,12 +102,12 @@ header, section, footer {
 }
 
 .bet-item {
-    background-color: #f0f0f0; /* Light grey background for each item */
+    background-color: #ffffff; /* White background for each bet item */
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    text-align: left;
+    border: 1px solid #dddddd; /* Subtle border for each item */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Slight shadow for each item */
 }
 
 .bet-item:last-child {
@@ -111,16 +115,21 @@ header, section, footer {
 }
 
 .bet-item strong {
-    display: inline-block;
-    min-width: 120px; /* Ensures alignment for labels */
-    color: #333;
+    color: #333; /* Dark text for emphasis */
+    font-weight: 600; /* Slightly bolder font for labels */
+}
+
+.bet-item span {
+    display: block; /* Each bet detail on a new line */
+    margin-top: 5px;
 }
 
 @media (max-width: 600px) {
-    .bet-item strong {
-        min-width: 100px; /* Adjusts label width for smaller screens */
+    .bet-item span {
+        font-size: 14px; /* Smaller font size for mobile */
     }
 }
+
 /* The Modal (background) */
 .modal {
     display: none;
