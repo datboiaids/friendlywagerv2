@@ -91,44 +91,59 @@ header, section, footer {
 #current-bets {
     margin-top: 30px;
     padding: 15px;
-    background-color: #f8f8f8; /* Light background for the section */
+    background-color: #ffffff; /* Clean white background */
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 #bets-list {
-    list-style-type: none; /* Removes default list styling */
+    list-style: none; /* Removes default list styling */
     padding: 0;
+    margin: 0;
 }
 
 .bet-item {
-    background-color: #ffffff; /* White background for each bet item */
+    background-color: #f9f9f9; /* Light gray background for each bet item */
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid #dddddd; /* Subtle border for each item */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Slight shadow for each item */
+    border: 1px solid #e1e1e1; /* Light border for definition */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .bet-item:last-child {
     margin-bottom: 0; /* Removes margin for the last item */
 }
 
-.bet-item strong {
-    color: #333; /* Dark text for emphasis */
-    font-weight: 600; /* Slightly bolder font for labels */
+.bet-item-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
-.bet-item span {
-    display: block; /* Each bet detail on a new line */
-    margin-top: 5px;
+.bet-item strong {
+    color: #333; /* Dark text for labels */
+    font-weight: 600;
+}
+
+.bet-close {
+    font-size: 20px;
+    cursor: pointer;
+    color: #cc0000; /* Red color for the close button */
+}
+
+.bet-close:hover {
+    color: #ff0000;
 }
 
 @media (max-width: 600px) {
-    .bet-item span {
-        font-size: 14px; /* Smaller font size for mobile */
+    .bet-item-details {
+        align-items: stretch;
     }
 }
+
 
 /* The Modal (background) */
 .modal {
