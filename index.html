@@ -33,8 +33,29 @@
         </form>
     </div>
 </div>
+<!-- Create Group Button/Link -->
+<button id="createGroupBtn">Create Group</button>
 
-                <li><a href="#create-group">Create Group</a></li>
+<!-- Create Group Modal HTML -->
+<div id="createGroupModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="create-group-form">
+            <h2>Create a Group</h2>
+            <label for="new-group-name">Name:</label>
+            <input type="text" id="new-group-name" name="new_group_name" required><br>
+            
+            <label for="new-group-password">Create Password:</label>
+            <input type="password" id="new-group-password" name="new_group_password" required><br>
+            
+            <label for="new-username">Your Username:</label>
+            <input type="text" id="new-username" name="new_username" required><br>
+            
+            <button type="submit">Create Group</button>
+        </form>
+    </div>
+</div>
+
             </ul>
         </nav>
     </header>
@@ -180,6 +201,29 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
+
+    document.addEventListener('DOMContentLoaded', function () {
+    var createGroupModal = document.getElementById("createGroupModal");
+    var createGroupBtn = document.getElementById("createGroupBtn");
+    var closes = document.getElementsByClassName("close");
+
+    createGroupBtn.onclick = function() {
+        createGroupModal.style.display = "block";
+    }
+
+    for (var i = 0; i < closes.length; i++) {
+        closes[i].onclick = function() {
+            this.parentElement.parentElement.style.display = "none";
+        }
+    }
+
+    window.onclick = function(event) {
+        if (event.target == createGroupModal) {
+            createGroupModal.style.display = "none";
+        }
+    }
+});
+
     </script>
     
 </body>
