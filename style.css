@@ -90,60 +90,41 @@ header, section, footer {
 
 #current-bets {
     margin-top: 30px;
-    padding: 15px;
-    background-color: #f2f2f2; /* Light background for the section */
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    overflow-x: auto; /* Ensures table is scrollable on smaller screens */
 }
 
 #bets-list {
+    border-collapse: collapse;
     width: 100%;
-    border-collapse: collapse; /* Ensures no space between table cells */
+    background-color: #fafafa; /* Light grey background */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for the table */
 }
 
 #bets-list th, #bets-list td {
-    border: 1px solid #ddd;
-    padding: 8px;
     text-align: left;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
 }
 
 #bets-list th {
-    background-color: #4CAF50;
+    background-color: #4CAF50; /* Green header for contrast */
     color: white;
 }
 
-#bets-list tr:nth-child(even) {
-    background-color: #fff; /* Alternating row background for better readability */
+#bets-list tr:hover {
+    background-color: #f5f5f5; /* Highlight on hover for interactivity */
 }
 
 .bet-close {
-    color: #f44336;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.bet-close:hover {
-    color: #d32f2f;
-}
-
-/* Ensure cell content does not overflow */
-#bets-list td {
-    max-width: 150px; /* Set a maximum width for table cells */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.bet-close {
-    color: #f44336;
+    color: #ff6347; /* Tomato color for the close button */
     cursor: pointer;
     font-size: 16px;
 }
 
 .bet-close:hover {
-    color: #d32f2f;
+    color: #ff4500; /* Darker shade on hover */
 }
+
 
 
 /* The Modal (background) */
