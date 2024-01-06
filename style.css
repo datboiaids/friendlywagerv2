@@ -204,3 +204,15 @@ header, section, footer {
 .modal-content button:hover {
     opacity: 0.8;
 }
+
+.bet-close {
+    float: right;
+    cursor: pointer;
+    color: #999;
+    font-weight: bold;
+}
+
+.bet-close:hover {
+    color: #666;
+}
+
