@@ -125,11 +125,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Bets will be added here dynamically -->
+                        <!-- Example bet -->
+                        <tr>
+                            <td>Example Bet</td>
+                            <td>$100</td>
+                            <td>+150</td>
+                            <td>Moneyline</td>
+                            <td>-</td>
+                            <td>JohnDoe</td>
+                            <td>$250</td>
+                            <td><span class="bet-close" onclick="removeBet('betID')">&times;</span></td>
+                        </tr>
+                        <!-- Additional bets will be added here dynamically -->
                     </tbody>
                 </table>
             </section>
-            
+                        
             <script>
                 function createBet() {
     var betData = {
