@@ -89,33 +89,38 @@ header, section, footer {
 }
 
 #current-bets {
-    padding: 20px;
     margin-top: 30px;
 }
 
 #bets-list {
-    margin-top: 15px;
+    list-style-type: none; /* Removes default list styling */
+    padding: 0;
 }
 
 .bet-item {
-    padding: 15px;
+    background-color: #f0f0f0; /* Light grey background for each item */
     margin-bottom: 10px;
-    border-bottom: 1px solid #0d0000; /* Light border for separation */
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
     text-align: left;
 }
 
+.bet-item:last-child {
+    margin-bottom: 0; /* Removes margin for the last item */
+}
+
 .bet-item strong {
-    color: #faf4f4; /* Dark text for emphasis */
-    margin-right: 5px; /* Spacing between label and value */
+    display: inline-block;
+    min-width: 120px; /* Ensures alignment for labels */
+    color: #333;
 }
 
 @media (max-width: 600px) {
-    #current-bets {
-        padding: 10px;
-    }
-    .bet-item {
-        padding: 10px;
+    .bet-item strong {
+        min-width: 100px; /* Adjusts label width for smaller screens */
     }
 }
+
 
 /* Add additional styling as needed */
