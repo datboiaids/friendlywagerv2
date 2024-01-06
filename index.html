@@ -72,12 +72,12 @@
         
                 <div>
                     <label for="amount-put-down">Amount Bet:</label>
-                    <input type="number" id="amount-put-down" name="amount_put_down" required>
+                    <input type="number" id="amount-put-down" name="amount_put_down" required oninput="calculatePayout()">                
                 </div>
-        
+                
                 <div>
                     <label for="odds">Odds (e.g., +200, -120):</label>
-                    <input type="text" id="odds" name="odds" required>
+                    <input type="text" id="odds" name="odds" required oninput="calculatePayout()">
                 </div>
         
                 <div>
@@ -102,8 +102,8 @@
                 </div>
         
                 <div>
-                    <label for="payout">Payout:</label>
-                    <input type="number" id="payout" name="payout" required>
+                    <label for="payout">Payout (including stake):</label>
+                    <input type="text" id="payout" name="payout" readonly>
                 </div>
         
                 <button type="submit">Create Bet</button>
@@ -223,6 +223,29 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+
+function calculatePayout() {
+        var odds = document.getElementById('odds').value;
+        var amount = parseFloat(document.getElementById('amount-put-down').value);
+        var payoutField = document.getElementById('payout');
+
+        if (!odds || !amount) {
+            payoutField.value = '';
+            return;
+        }
+
+        // Example calculation logic (modify as per your odds calculation logic)
+        var payout = 0;
+        if (odds.startsWith('+')) {
+            var numericOdds = parseFloat(odds.substring(1));
+            payout = (numericOdds / 100) * amount + amount;
+        } else if (odds.startsWith('-')) {
+            var numericOdds = parseFloat(odds.substring(1));
+            payout = (100 / numericOdds) * amount + amount;
+        }
+
+        payoutField.value = payout.toFixed(2);
+    }
 
     </script>
     
