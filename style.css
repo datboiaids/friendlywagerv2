@@ -90,25 +90,24 @@ header, section, footer {
 
 #current-bets {
     margin-top: 30px;
+    background-color: #fff; /* Solid white background for contrast */
     padding: 15px;
-    background-color: transparent;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
 }
 
 #bets-list {
-    list-style: none;
-    padding: 0;
+    list-style-type: none;
     margin: 0;
+    padding: 0;
 }
 
 .bet-item {
-    background-color: #f9f9f9; /* Light gray background for each bet item */
-    padding: 10px 20px; /* Increased padding */
-    margin-bottom: 10px;
-    border-radius: 6px; /* Rounded corners */
-    border: 1px solid #e1e1e1; /* Light border for definition */
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    background-color: #fafafa; /* Slightly off-white for each item */
+    border-left: 4px solid #4CAF50; /* Accent color on the left border */
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: 4px;
 }
 
 .bet-item:last-child {
@@ -116,41 +115,35 @@ header, section, footer {
 }
 
 .bet-item-details {
-    flex-grow: 1;
-    padding-left: 15px; /* Additional padding on the left */
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 10px;
+    align-items: center;
 }
 
-.bet-item-details p {
-    margin: 4px 0;
-    color: #333;
-    font-size: 14px; /* Adjust font size as needed */
-}
-
-.bet-item-details p strong {
+.bet-item-details strong {
     font-weight: bold;
-    margin-right: 5px; /* Space between label and value */
+    color: #333;
 }
 
 .bet-close {
-    font-size: 20px;
+    font-size: 18px;
     cursor: pointer;
-    color: #999;
-    margin-left: 15px;
+    color: #777;
+    align-self: start; /* Align close button to the top of the item */
 }
 
 .bet-close:hover {
-    color: #666;
+    color: #444;
 }
 
 @media (max-width: 600px) {
-    .bet-item {
-        flex-direction: column;
-        align-items: stretch;
+    .bet-item-details {
+        grid-template-columns: 1fr;
     }
 
     .bet-close {
-        align-self: flex-end;
-        margin-top: 10px;
+        align-self: auto;
     }
 }
 
