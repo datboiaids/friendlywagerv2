@@ -80,25 +80,6 @@ window.onclick = function(event) {
     }
 }
 
-function addBetToDisplay(betData, betId) {
-    var betsList = document.getElementById('bets-list');
-    
-    var betDiv = document.createElement('div');
-    betDiv.classList.add('bet-item');
-    betDiv.setAttribute('id', 'bet_' + betId);
-    betDiv.innerHTML = `
-        <span class="bet-close" onclick="removeBet('bet_${betId}')">&times;</span>
-        <strong>Bet Name:</strong> ${betData.name}<br>
-        <strong>Amount:</strong> $${betData.amount}<br>
-        <strong>Odds:</strong> ${betData.odds}<br>
-        <strong>Type:</strong> ${betData.betType}<br>
-        ${betData.betType === 'over_under' ? `<strong>Over/Under:</strong> ${betData.overUnderSelection}<br>` : ''}
-        <strong>Creator:</strong> ${betData.creator}<br>
-        <strong>Payout:</strong> $${betData.payout}
-    `;
-    betsList.appendChild(betDiv);
-}
-
 function removeBet(betId) {
     var betToRemove = document.getElementById(betId);
     if (betToRemove) {
