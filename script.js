@@ -131,12 +131,11 @@ function removeBet(betId) {
     }
 }
 
-function addBetToDisplay(betData, betId) {
+function addBetToDisplay(betData) {
     var betsList = document.getElementById('bets-list').getElementsByTagName('tbody')[0];
-    var row = betsList.insertRow(-1); // Inserts a new row at the end of the table
-    row.setAttribute('id', 'bet_' + betId);
+    var row = betsList.insertRow(-1); // Insert a row at the end of the table
 
-    // Insert cells and fill them with bet data
+    // Add cells for each piece of bet information
     row.insertCell(0).textContent = betData.name;
     row.insertCell(1).textContent = `$${betData.amount}`;
     row.insertCell(2).textContent = betData.odds;
@@ -145,14 +144,16 @@ function addBetToDisplay(betData, betId) {
     row.insertCell(5).textContent = betData.creator;
     row.insertCell(6).textContent = `$${betData.payout}`;
 
-    // Add close button
+    // Add a close button to remove the bet
     var closeButtonCell = row.insertCell(7);
     var closeButton = document.createElement("span");
-    closeButton.innerHTML = "&times;";
-    closeButton.classList.add("bet-close");
-    closeButton.onclick = function() { removeBet('bet_' + betId); };
+    closeButton.textContent = "×";
+    closeButton.className = "bet-close";
+    closeButton.onclick = function() { row.remove(); };
     closeButtonCell.appendChild(closeButton);
 }
+
+// Ensure this function is called with the right data when a user submits a bet
 
 function removeBet(betId) {
     var betToRemove = document.getElementById(betId);
