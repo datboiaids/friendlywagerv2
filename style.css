@@ -91,12 +91,11 @@ header, section, footer {
 #current-bets {
     margin-top: 30px;
     padding: 15px;
-    background-color: transparent; /* Transparent background */
-    border-radius: 8px;
+    background-color: transparent;
 }
 
 #bets-list {
-    list-style: none; /* Removes default list styling */
+    list-style: none;
     padding: 0;
     margin: 0;
 }
@@ -104,32 +103,37 @@ header, section, footer {
 .bet-item {
     padding: 10px;
     margin-bottom: 10px;
-    border-bottom: 1px solid #e1e1e1; /* Subtle bottom border for separation */
+    border-bottom: 1px solid #e1e1e1;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start; /* Align items to the start for better readability */
 }
 
 .bet-item:last-child {
-    margin-bottom: 0; /* Removes margin for the last item */
-    border-bottom: none; /* No border for the last item */
+    margin-bottom: 0;
+    border-bottom: none;
 }
 
 .bet-item-details {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    flex-grow: 1; /* Allows details to take available space */
 }
 
-.bet-item strong {
-    color: #333; /* Dark text for labels */
+.bet-item-details p {
+    margin: 5px 0;
+    color: #333;
+    font-size: 16px; /* Larger font size for readability */
+}
+
+.bet-item-details p strong {
     font-weight: 600;
+    margin-right: 5px; /* Spacing between label and value */
 }
 
 .bet-close {
     font-size: 20px;
     cursor: pointer;
     color: #999;
+    margin-left: 10px; /* Space between close button and bet details */
 }
 
 .bet-close:hover {
@@ -137,8 +141,14 @@ header, section, footer {
 }
 
 @media (max-width: 600px) {
-    .bet-item-details {
+    .bet-item {
+        flex-direction: column; /* Stack details and close button on small screens */
         align-items: stretch;
+    }
+
+    .bet-close {
+        align-self: flex-end; /* Align close button to the end */
+        margin-top: 10px; /* Space above the close button on small screens */
     }
 }
 
