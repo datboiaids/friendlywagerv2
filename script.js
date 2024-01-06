@@ -133,45 +133,44 @@ function removeBet(betId) {
 
 function addBetToDisplay(betData, betId) {
     var betsList = document.getElementById('bets-list').getElementsByTagName('tbody')[0];
-    var row = betsList.insertRow();
+    var row = betsList.insertRow(-1); // Inserts a new row at the end of the table
     row.setAttribute('id', 'bet_' + betId);
 
-    // Add cells for each piece of bet information
-    var nameCell = row.insertCell(0);
-    nameCell.textContent = betData.name;
+    // Insert cells and fill them with bet data
+    row.insertCell(0).textContent = betData.name;
+    row.insertCell(1).textContent = `$${betData.amount}`;
+    row.insertCell(2).textContent = betData.odds;
+    row.insertCell(3).textContent = betData.betType;
+    row.insertCell(4).textContent = betData.overUnderSelection || '-';
+    row.insertCell(5).textContent = betData.creator;
+    row.insertCell(6).textContent = `$${betData.payout}`;
 
-    var amountCell = row.insertCell(1);
-    amountCell.textContent = `$${betData.amount}`;
-
-    var oddsCell = row.insertCell(2);
-    oddsCell.textContent = betData.odds;
-
-    var typeCell = row.insertCell(3);
-    typeCell.textContent = betData.betType;
-
-    var overUnderCell = row.insertCell(4);
-    overUnderCell.textContent = betData.overUnderSelection || '-';
-
-    var creatorCell = row.insertCell(5);
-    creatorCell.textContent = betData.creator;
-
-    var payoutCell = row.insertCell(6);
-    payoutCell.textContent = `$${betData.payout}`;
-
-    // Add cell for close button
-    var actionCell = row.insertCell(7);
+    // Add close button
+    var closeButtonCell = row.insertCell(7);
     var closeButton = document.createElement("span");
-    closeButton.textContent = "×";
-    closeButton.className = "bet-close";
+    closeButton.innerHTML = "&times;";
+    closeButton.classList.add("bet-close");
     closeButton.onclick = function() { removeBet('bet_' + betId); };
-    actionCell.appendChild(closeButton);
+    closeButtonCell.appendChild(closeButton);
 }
 
 function removeBet(betId) {
     var betToRemove = document.getElementById(betId);
     if (betToRemove) {
-        betToRemove.parentNode.removeChild(betToRemove);
+        betToRemove.remove();
     }
 }
+
+// Example of adding a bet
+// This is just for demonstration; you should replace this with your actual bet submission logic
+addBetToDisplay({
+    name: "Sample Bet",
+    amount: 100,
+    odds: "+200",
+    betType: "Moneyline",
+    overUnderSelection: "Over",
+    creator: "User123",
+    payout: 300
+}, new Date().getTime()); // Using timestamp as a unique ID for demonstration
 
 
