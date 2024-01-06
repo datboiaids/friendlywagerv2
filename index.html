@@ -111,11 +111,25 @@
 
             <section id="current-bets">
                 <h2>Current Bets</h2>
-                <div id="bets-list">
-                    <!-- Dynamically inserted bets will appear here -->
-                </div>
+                <table id="bets-list">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Odds</th>
+                            <th>Type</th>
+                            <th>Over/Under</th>
+                            <th>Creator</th>
+                            <th>Payout</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Bets will be added here dynamically -->
+                    </tbody>
+                </table>
             </section>
-
+            
             <script>
                 function createBet() {
     var betData = {

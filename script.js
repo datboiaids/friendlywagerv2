@@ -106,4 +106,29 @@ function removeBet(betId) {
     }
 }
 
+function addBetToDisplay(betData, betId) {
+    var betsList = document.getElementById('bets-list').getElementsByTagName('tbody')[0];
+    
+    var row = betsList.insertRow();
+    row.setAttribute('id', 'bet_' + betId);
+
+    row.innerHTML = `
+        <td>${betData.name}</td>
+        <td>$${betData.amount}</td>
+        <td>${betData.odds}</td>
+        <td>${betData.betType}</td>
+        <td>${betData.overUnderSelection || ''}</td>
+        <td>${betData.creator}</td>
+        <td>$${betData.payout}</td>
+        <td><span class="bet-close" onclick="removeBet('bet_${betId}')">&times;</span></td>
+    `;
+}
+
+function removeBet(betId) {
+    var betToRemove = document.getElementById(betId);
+    if (betToRemove) {
+        betToRemove.parentNode.removeChild(betToRemove);
+    }
+}
+
 

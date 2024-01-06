@@ -90,61 +90,40 @@ header, section, footer {
 
 #current-bets {
     margin-top: 30px;
-    background-color: #fff; /* Solid white background for contrast */
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Subtle shadow for depth */
 }
 
 #bets-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+    width: 100%;
+    border-collapse: collapse;
 }
 
-.bet-item {
-    background-color: #fafafa; /* Slightly off-white for each item */
-    border-left: 4px solid #4CAF50; /* Accent color on the left border */
-    padding: 10px 15px;
-    margin-bottom: 8px;
-    border-radius: 4px;
+#bets-list th, #bets-list td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
 }
 
-.bet-item:last-child {
-    margin-bottom: 0;
+#bets-list th {
+    background-color: #4CAF50;
+    color: white;
 }
 
-.bet-item-details {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    column-gap: 10px;
-    align-items: center;
+#bets-list tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
 
-.bet-item-details strong {
-    font-weight: bold;
-    color: #333;
+#bets-list tr:hover {
+    background-color: #ddd;
 }
 
 .bet-close {
-    font-size: 18px;
+    color: #f44336;
     cursor: pointer;
-    color: #777;
-    align-self: start; /* Align close button to the top of the item */
+    font-size: 16px;
 }
 
 .bet-close:hover {
-    color: #444;
-}
-
-@media (max-width: 600px) {
-    .bet-item-details {
-        grid-template-columns: 1fr;
-    }
-
-    .bet-close {
-        align-self: auto;
-    }
+    color: #d32f2f;
 }
 
 
