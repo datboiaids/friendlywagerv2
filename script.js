@@ -131,4 +131,47 @@ function removeBet(betId) {
     }
 }
 
+function addBetToDisplay(betData, betId) {
+    var betsList = document.getElementById('bets-list').getElementsByTagName('tbody')[0];
+    var row = betsList.insertRow();
+    row.setAttribute('id', 'bet_' + betId);
+
+    // Add cells for each piece of bet information
+    var nameCell = row.insertCell(0);
+    nameCell.textContent = betData.name;
+
+    var amountCell = row.insertCell(1);
+    amountCell.textContent = `$${betData.amount}`;
+
+    var oddsCell = row.insertCell(2);
+    oddsCell.textContent = betData.odds;
+
+    var typeCell = row.insertCell(3);
+    typeCell.textContent = betData.betType;
+
+    var overUnderCell = row.insertCell(4);
+    overUnderCell.textContent = betData.overUnderSelection || '-';
+
+    var creatorCell = row.insertCell(5);
+    creatorCell.textContent = betData.creator;
+
+    var payoutCell = row.insertCell(6);
+    payoutCell.textContent = `$${betData.payout}`;
+
+    // Add cell for close button
+    var actionCell = row.insertCell(7);
+    var closeButton = document.createElement("span");
+    closeButton.textContent = "×";
+    closeButton.className = "bet-close";
+    closeButton.onclick = function() { removeBet('bet_' + betId); };
+    actionCell.appendChild(closeButton);
+}
+
+function removeBet(betId) {
+    var betToRemove = document.getElementById(betId);
+    if (betToRemove) {
+        betToRemove.parentNode.removeChild(betToRemove);
+    }
+}
+
 
