@@ -90,11 +90,15 @@ header, section, footer {
 
 #current-bets {
     margin-top: 30px;
+    padding: 15px;
+    background-color: #f2f2f2; /* Light background for the section */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
 }
 
 #bets-list {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse; /* Ensures no space between table cells */
 }
 
 #bets-list th, #bets-list td {
@@ -109,11 +113,26 @@ header, section, footer {
 }
 
 #bets-list tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #fff; /* Alternating row background for better readability */
 }
 
-#bets-list tr:hover {
-    background-color: #ddd;
+.bet-close {
+    color: #f44336;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.bet-close:hover {
+    color: #d32f2f;
+}
+
+/* Ensure cell content does not overflow */
+#bets-list td {
+    max-width: 150px; /* Set a maximum width for table cells */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .bet-close {
