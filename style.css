@@ -90,38 +90,35 @@ header, section, footer {
 
 #current-bets {
     margin-top: 30px;
-    overflow-x: auto; /* Allows horizontal scrolling on smaller screens */
+    overflow-x: auto;
 }
 
 #bets-list {
     border-collapse: collapse;
     width: 100%;
-    background-color: #f9f9f9; /* Light background for visibility */
+    background-color: #f9f9f9; /* Light grey background for the table */
 }
 
 #bets-list th, #bets-list td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
+    color: #333; /* Dark color for text */
 }
 
 #bets-list th {
-    background-color: #4CAF50;
-    color: white;
-}
-
-#bets-list tr:nth-child(odd) {
-    background-color: #ffffff; /* White background for odd rows */
+    background-color: #4CAF50; /* Green background for headers */
+    color: white; /* White text for headers */
 }
 
 #bets-list tr:nth-child(even) {
-    background-color: #f2f2f2; /* Light grey for even rows */
+    background-color: #ffffff; /* White background for even rows */
 }
 
 .bet-close {
-    color: #f44336; /* Red color for close button */
+    color: #f44336; /* Red color for the close button */
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .bet-close:hover {
