@@ -121,7 +121,6 @@ header, section, footer {
         min-width: 100px; /* Adjusts label width for smaller screens */
     }
 }
-
 /* The Modal (background) */
 .modal {
     display: none;
@@ -132,8 +131,7 @@ header, section, footer {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    background-color: rgba(0,0,0,0.4); /* Black with opacity */
 }
 
 /* Modal Content */
@@ -161,5 +159,39 @@ header, section, footer {
     cursor: pointer;
 }
 
+/* Input fields styling */
+.modal-content input[type="text"],
+.modal-content input[type="password"] {
+    width: calc(100% - 20px); /* Full width minus padding */
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 16px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 16px;
+}
 
-/* Add additional styling as needed */
+/* Adjusting label styles for clarity */
+.modal-content label {
+    display: block;
+    margin-top: 10px;
+    color: #555;
+    font-size: 16px;
+}
+
+/* Submit button styling */
+.modal-content button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+.modal-content button:hover {
+    opacity: 0.8;
+}
