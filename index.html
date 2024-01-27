@@ -2,277 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Friendly Wager</title>
-    <link rel="stylesheet" href="style.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to Friendly Wager</h1>
-        <nav>
-            <ul>
-                <!-- Join Group Button/Link -->
-<button id="joinGroupBtn">Join Group</button>
-
-<!-- Modal HTML -->
-<div id="joinGroupModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <form id="join-group-form">
-            <h2>Join a Group</h2>
-            <label for="group-name">Group Name:</label>
-            <input type="text" id="group-name" name="group_name" required><br>
-            
-            <label for="group-password">Password:</label>
-            <input type="password" id="group-password" name="group_password" required><br>
-            
-            <label for="username">Your Username:</label>
-            <input type="text" id="username" name="username" required><br>
-            
-            <button type="submit">Join</button>
-        </form>
-    </div>
-</div>
-<!-- Create Group Button/Link -->
-<button id="createGroupBtn">Create Group</button>
-
-<!-- Create Group Modal HTML -->
-<div id="createGroupModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <form id="create-group-form">
-            <h2>Create a Group</h2>
-            <label for="new-group-name">Name:</label>
-            <input type="text" id="new-group-name" name="new_group_name" required><br>
-            
-            <label for="new-group-password">Create Password:</label>
-            <input type="password" id="new-group-password" name="new_group_password" required><br>
-            
-            <label for="new-username">Your Username:</label>
-            <input type="text" id="new-username" name="new_username" required><br>
-            
-            <button type="submit">Create Group</button>
-        </form>
-    </div>
-</div>
-
-            </ul>
-        </nav>
+        <h1>Friendly Wager</h1>
     </header>
 
     <main>
+        <section id="betSection">
+            <form id="createBetForm">
+                <label for="betName">Bet Name:</label>
+                <input type="text" id="betName" required>
 
-        <section id="create-bet">
-            <h2>Create a Bet</h2>
-            <form id="create-bet-form" action="" method="post">
-                <div>
-                    <label for="bet-name">Name of Bet:</label>
-                    <input type="text" id="bet-name" name="bet_name" required>
-                </div>
-        
-                <div>
-                    <label for="amount-put-down">Amount Bet:</label>
-                    <input type="number" id="amount-put-down" name="amount_put_down" required oninput="calculatePayout()">                
-                </div>
-                
-                <div>
-                    <label for="odds">Odds (e.g., +200, -120):</label>
-                    <input type="text" id="odds" name="odds" required oninput="calculatePayout()">
-                </div>
-        
-                <div>
-                    <label for="bet-type">Bet Type:</label>
-                    <select id="bet-type" name="bet_type" onchange="toggleOverUnderInput()">
-                        <option value="moneyline">Moneyline</option>
-                        <option value="over_under">Over/Under</option>
-                    </select>
-                </div>
-        
-                <div id="over-under-input" style="display: none;">
-                    <label for="over-under-selection">Choose Over/Under:</label>
-                    <select id="over-under-selection" name="over_under_selection">
-                        <option value="over">Over</option>
-                        <option value="under">Under</option>
-                    </select>
-                </div>
-        
-                <div>
-                    <label for="bet-creator">Your Name:</label>
-                    <input type="text" id="bet-creator" name="bet_creator" required>
-                </div>
-        
-                <div>
-                    <label for="payout">Payout (including stake):</label>
-                    <input type="text" id="payout" name="payout" readonly>
-                </div>
-        
+                <label for="wageredAmount">Amount Wagered ($):</label>
+                <input type="number" id="wageredAmount" min="1" required>
+
+                <label for="betOdds">Odds:</label>
+                <input type="text" id="betOdds" required>
+
+                <label for="potentialPayout">Potential Payout ($):</label>
+                <input type="text" id="potentialPayout" readonly>
+
                 <button type="submit">Create Bet</button>
             </form>
-
-            <section id="current-bets">
-                <h2>Current Bets</h2>
-                <table id="bets-list">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Amount</th>
-                            <th>Odds</th>
-                            <th>Type</th>
-                            <th>Over/Under</th>
-                            <th>Creator</th>
-                            <th>Payout</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Example bet -->
-                        <tr>
-                            <td>Example Bet</td>
-                            <td>$100</td>
-                            <td>+150</td>
-                            <td>Moneyline</td>
-                            <td>-</td>
-                            <td>JohnDoe</td>
-                            <td>$250</td>
-                            <td><span class="bet-close" onclick="removeBet('betID')">&times;</span></td>
-                        </tr>
-                        <!-- Additional bets will be added here dynamically -->
-                    </tbody>
-                </table>
-            </section>
-                        
-            <script>
-                function createBet() {
-    var betData = {
-        name: document.getElementById('bet-name').value,
-        amount: document.getElementById('amount-put-down').value,
-        odds: document.getElementById('odds').value,
-        betType: document.getElementById('bet-type').value,
-        overUnderSelection: document.getElementById('bet-type').value === 'over_under' ? document.getElementById('over-under-selection').value : null,
-        creator: document.getElementById('bet-creator').value,
-        payout: document.getElementById('payout').value
-    };
-    console.log("Creating bet: ", betData);
-    addBetToDisplay(betData);
-    // In a real application, you would also send this data to a server.
-}
-
-function addBetToDisplay(betData) {
-    var betsList = document.getElementById('bets-list');
-    
-    var betDiv = document.createElement('div');
-    betDiv.classList.add('bet-item'); // For CSS styling
-    betDiv.innerHTML = `
-        <strong>Bet Name:</strong> ${betData.name}<br>
-        <strong>Amount:</strong> $${betData.amount}<br>
-        <strong>Odds:</strong> ${betData.odds}<br>
-        <strong>Type:</strong> ${betData.betType}<br>
-        ${betData.betType === 'over_under' ? `<strong>Over/Under:</strong> ${betData.overUnderSelection}<br>` : ''}
-        <strong>Creator:</strong> ${betData.creator}<br>
-        <strong>Payout:</strong> $${betData.payout}
-    `;
-    betsList.appendChild(betDiv);
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('create-bet-form').addEventListener('submit', function (e) {
-        e.preventDefault();
-        createBet();
-        e.target.reset(); // Optional: Reset the form fields after submission
-    });
-});
-            </script>
-
+            <div id="betsContainer"></div>
+        </section>
     </main>
 
-    <footer>
-        <p>&copy; 2024 Friendly Wager. All rights reserved.</p>
-    </footer>
+    <footer></footer>
 
-    <script>
-        function toggleOverUnderInput() {
-            var betType = document.getElementById('bet-type').value;
-            var overUnderInput = document.getElementById('over-under-input');
-            if (betType === 'over_under') {
-                overUnderInput.style.display = 'block';
-            } else {
-                overUnderInput.style.display = 'none';
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            // Initialize the toggle state for over/under input
-            toggleOverUnderInput();
-
-            // Add more JavaScript as needed for other functionalities
-        });
-
-        document.addEventListener('DOMContentLoaded', function () {
-        var modal = document.getElementById("joinGroupModal");
-        var btn = document.getElementById("joinGroupBtn");
-        var span = document.getElementsByClassName("close")[0];
-
-        btn.onclick = function() {
-            modal.style.display = "block";
-        }
-
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        }
-    });
-
-    document.addEventListener('DOMContentLoaded', function () {
-    var createGroupModal = document.getElementById("createGroupModal");
-    var createGroupBtn = document.getElementById("createGroupBtn");
-    var closes = document.getElementsByClassName("close");
-
-    createGroupBtn.onclick = function() {
-        createGroupModal.style.display = "block";
-    }
-
-    for (var i = 0; i < closes.length; i++) {
-        closes[i].onclick = function() {
-            this.parentElement.parentElement.style.display = "none";
-        }
-    }
-
-    window.onclick = function(event) {
-        if (event.target == createGroupModal) {
-            createGroupModal.style.display = "none";
-        }
-    }
-});
-
-function calculatePayout() {
-        var odds = document.getElementById('odds').value;
-        var amount = parseFloat(document.getElementById('amount-put-down').value);
-        var payoutField = document.getElementById('payout');
-
-        if (!odds || !amount) {
-            payoutField.value = '';
-            return;
-        }
-
-        // Example calculation logic (modify as per your odds calculation logic)
-        var payout = 0;
-        if (odds.startsWith('+')) {
-            var numericOdds = parseFloat(odds.substring(1));
-            payout = (numericOdds / 100) * amount + amount;
-        } else if (odds.startsWith('-')) {
-            var numericOdds = parseFloat(odds.substring(1));
-            payout = (100 / numericOdds) * amount + amount;
-        }
-
-        payoutField.value = payout.toFixed(2);
-    }
-
-    </script>
-    
+    <script src="script.js"></script>
 </body>
 </html>
