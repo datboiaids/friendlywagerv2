@@ -13,17 +13,25 @@
     <main>
         <section id="betSection">
             <form id="createBetForm">
-                <label for="betName">Bet Name:</label>
-                <input type="text" id="betName" required>
+                <div class="form-group">
+                    <label for="betName">Bet Name:</label>
+                    <input type="text" id="betName" required>
+                </div>
 
-                <label for="wageredAmount">Amount Wagered ($):</label>
-                <input type="number" id="wageredAmount" min="1" required>
+                <div class="form-group">
+                    <label for="wageredAmount">Amount Wagered ($):</label>
+                    <input type="number" id="wageredAmount" min="1" required>
+                </div>
 
-                <label for="betOdds">Odds:</label>
-                <input type="text" id="betOdds" required>
+                <div class="form-group">
+                    <label for="betOdds">Odds (format x:y):</label>
+                    <input type="text" id="betOdds" required pattern="\d+:\d+">
+                </div>
 
-                <label for="potentialPayout">Potential Payout ($):</label>
-                <input type="text" id="potentialPayout" readonly>
+                <div class="form-group">
+                    <label for="potentialPayout">Potential Payout ($):</label>
+                    <input type="text" id="potentialPayout" readonly>
+                </div>
 
                 <button type="submit">Create Bet</button>
             </form>
@@ -31,7 +39,9 @@
         </section>
     </main>
 
-    <footer></footer>
+    <footer>
+        <p>&copy; 2024 Friendly Wager</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>

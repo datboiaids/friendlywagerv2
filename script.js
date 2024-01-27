@@ -1,10 +1,8 @@
-// Revised script.js with Fixed Payout Calculation
+// Updated script.js for "Friendly Wager"
 
 function calculatePayout(wageredAmount, odds) {
-    // Assuming the odds are in the format "x:y"
     const [numerator, denominator] = odds.split(':').map(Number);
-    if (!numerator || !denominator || wageredAmount <= 0) return 0;
-    return (wageredAmount * (numerator / denominator)) + wageredAmount;
+    return numerator && denominator ? wageredAmount * (numerator / denominator) + wageredAmount : 0;
 }
 
 function displayBet(bet) {
@@ -15,24 +13,29 @@ function displayBet(bet) {
     betContainer.appendChild(betElement);
 }
 
-document.getElementById('createBetForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const betName = document.getElementById('betName').value;
-    const wageredAmount = parseFloat(document.getElementById('wageredAmount').value);
-    const betOdds = document.getElementById('betOdds').value;
-    const potentialPayout = calculatePayout(wageredAmount, betOdds);
-    const newBet = { name: betName, amount: wageredAmount, odds: betOdds, payout: potentialPayout };
-    displayBet(newBet);
-    document.getElementById('createBetForm').reset();
-});
-
-document.getElementById('wageredAmount').addEventListener('input', updatePotentialPayout);
-document.getElementById('betOdds').addEventListener('input', updatePotentialPayout);
-
 function updatePotentialPayout() {
     const wageredAmount = parseFloat(document.getElementById('wageredAmount').value || 0);
     const betOdds = document.getElementById('betOdds').value;
     const potentialPayout = calculatePayout(wageredAmount, betOdds);
-    document.getElementById('potentialPayout').value = isNaN(potentialPayout) ? '0.00' : potentialPayout.toFixed(2);
+    document.getElementById('potentialPayout').value = potentialPayout.toFixed(2);
 }
+
+document.getElementById('createBetForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const betName = document.getElementById('betName').value;
+    const wageredAmount = parseFloat(document.getElementById('wageredAmount').value || 0);
+    const betOdds = document.getElementById('betOdds').value;
+    const potentialPayout = calculatePayout(wageredAmount, betOdds);
+
+    if (betName && wageredAmount > 0 && betOdds) {
+        const newBet = { name: betName, amount: wageredAmount, odds: betOdds, payout: potentialPayout };
+        displayBet(newBet);
+        document.getElementById('createBetForm').reset();
+    } else {
+        alert('Please fill in all fields correctly.');
+    }
+});
+
+document.getElementById('wageredAmount').addEventListener('input', updatePotentialPayout);
+document.getElementById('betOdds').addEventListener('input', updatePotentialPayout);
 
