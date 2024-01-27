@@ -1,8 +1,12 @@
 // Updated script.js for "Friendly Wager"
 
 function calculatePayout(wageredAmount, odds) {
-    const [numerator, denominator] = odds.split(':').map(Number);
-    return numerator && denominator ? wageredAmount * (numerator / denominator) + wageredAmount : 0;
+    if (odds > 0) {
+        return wageredAmount * (odds / 100) + wageredAmount;
+    } else if (odds < 0) {
+        return wageredAmount * (100 / Math.abs(odds)) + wageredAmount;
+    }
+    return 0;
 }
 
 function displayBet(bet) {
@@ -15,9 +19,9 @@ function displayBet(bet) {
 
 function updatePotentialPayout() {
     const wageredAmount = parseFloat(document.getElementById('wageredAmount').value || 0);
-    const betOdds = document.getElementById('betOdds').value;
+    const betOdds = parseInt(document.getElementById('betOdds').value, 10);
     const potentialPayout = calculatePayout(wageredAmount, betOdds);
-    document.getElementById('potentialPayout').value = potentialPayout.toFixed(2);
+    document.getElementById('potentialPayout').value = isNaN(potentialPayout) ? '' : potentialPayout.toFixed(2);
 }
 
 document.getElementById('createBetForm').addEventListener('submit', function(event) {
@@ -38,4 +42,3 @@ document.getElementById('createBetForm').addEventListener('submit', function(eve
 
 document.getElementById('wageredAmount').addEventListener('input', updatePotentialPayout);
 document.getElementById('betOdds').addEventListener('input', updatePotentialPayout);
-
