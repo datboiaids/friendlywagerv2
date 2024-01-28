@@ -13,6 +13,21 @@
                 <nav>
                     <button onclick="location.href='#createGroupForm'">Create Group</button>
                     <button onclick="location.href='#joinGroupForm'">Join Group</button>
+
+                    <div id="joinGroupForm" class="form-container hidden">
+                        <input type="text" id="joinGroupName" placeholder="Group Name">
+                        <input type="password" id="joinGroupPassword" placeholder="Password">
+                        <input type="text" id="joinGroupNickname" placeholder="Nickname">
+                        <button onclick="joinGroup()">Join Group</button>
+                    </div>
+            
+                    <div id="createGroupForm" class="form-container hidden">
+                        <input type="text" id="createGroupName" placeholder="Group Name">
+                        <input type="password" id="createGroupPassword" placeholder="Password">
+                        <input type="text" id="createGroupNickname" placeholder="Nickname">
+                        <button onclick="createGroup()">Create Group</button>
+                    </div>
+
                 </nav>
             </nav>
         </div>

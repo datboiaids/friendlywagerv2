@@ -131,3 +131,19 @@ button:hover {
         position: relative;
     }
 }
+
+.form-container {
+    display: none; /* Initially hidden */
+    margin-top: 20px;
+}
+
+.form-container.hidden {
+    display: none;
+}
+
+.form-container input,
+.form-container button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}

@@ -91,3 +91,28 @@ app.post('/api/groups/join', async (req, res) => {
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server running on port ${port}`));
+
+// Script to toggle form visibility and handle form submission
+
+document.getElementById('showJoinGroupForm').addEventListener('click', function() {
+    document.getElementById('joinGroupForm').classList.toggle('hidden');
+    document.getElementById('createGroupForm').classList.add('hidden');
+});
+
+document.getElementById('showCreateGroupForm').addEventListener('click', function() {
+    document.getElementById('createGroupForm').classList.toggle('hidden');
+    document.getElementById('joinGroupForm').classList.add('hidden');
+});
+
+function joinGroup() {
+    // Implement the logic to join a group
+    // Collect data from the join group form and send it to the server
+}
+
+function createGroup() {
+    // Implement the logic to create a group
+    // Collect data from the create group form and send it to the server
+}
+
+// Add any additional functionality as required
+
